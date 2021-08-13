@@ -50,21 +50,19 @@ def send_email(lst):
     msg = u'Subject: site' + "\n\n"
     for i in lst:
         msg += str(i).strip() + "\n"
-    msg += '_' * 150 + '\n'
-
-    # print(msg)
+    msg += '_' * 50 + '\n'
     MAIL_SERVER = 'smtp.mail.ru'
     MAIL_PORT = 465
-    MAIL_USERNAME = 'kotvickiy@inbox.ru'
-    MAIL_PASSWORD = '>?241215'
+    MAIL_USERNAME = 'test-70@internet.ru'
+    MAIL_PASSWORD = '6sBPYzGrhLRZmVy1xnJi'
     FROM = MAIL_USERNAME
-    TO = 'vladkotvickiy@mail.ru'
+    TO = 'kotvickiy@inbox.ru', 'vladkotvickiy@mail.ru'
     msg = MIMEText('\n {}'.format(msg).encode('utf-8'), _charset='utf-8')
     smtpObj = smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT)
     smtpObj.ehlo()
     smtpObj.login(MAIL_USERNAME, MAIL_PASSWORD)
     smtpObj.sendmail(FROM, TO,
-            'Subject: site___ \n{}'.format(msg))
+            'Subject: _site_ \n{}'.format(msg))
     smtpObj.quit()
 
 
@@ -91,14 +89,11 @@ def run(url):
         print(ex)
 
 
-
-
 def main():
     while True:
         url = r'https://www.acma.gov.au/blocked-gambling-websites'  
         run(url)
         sleep(uniform(20, 30))
-
 
 
 if __name__ == "__main__":
