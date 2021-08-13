@@ -56,7 +56,7 @@ def send_email(lst):
     MAIL_USERNAME = 'test-70@internet.ru'
     MAIL_PASSWORD = '6sBPYzGrhLRZmVy1xnJi'
     FROM = MAIL_USERNAME
-    TO = 'kotvickiy@inbox.ru', 'vladkotvickiy@mail.ru', 'vladkotvickiy@gmail.com'
+    TO = 'm@wmob.eu', 'zlokovar@gmail.com', 'vladkotvickiy@gmail.com'
     msg = MIMEText('\n {}'.format(msg).encode('utf-8'), _charset='utf-8')
     smtpObj = smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT)
     smtpObj.ehlo()
@@ -90,10 +90,8 @@ def run(url):
 
 
 def main():
-    while True:
-        url = r'https://www.acma.gov.au/blocked-gambling-websites'  
-        run(url)
-        sleep(uniform(20, 30))
+    url = r'https://www.acma.gov.au/blocked-gambling-websites'  
+    run(url)
 
 
 if __name__ == "__main__":
