@@ -15,7 +15,7 @@ def save(data):
     with open('./lst_sites.txt', 'w'):
         for i in data:
             with open('./lst_sites.txt', 'a', encoding='utf-8', newline='') as file:
-                file.write(f'{i}\n')
+                file.write('{}\n'.format(i))
 
 
 def lst_old():
@@ -47,16 +47,16 @@ def get_data(html):
 
 
 def send_email(lst):
-    msg = u'Subject: site' + "\n\n"
+    msg = u'Subject:' + "\n\n"
     for i in lst:
-        msg += str(i).strip() + "\n"
+        msg += '    ' + str(i).strip() + "\n"
     msg += '_' * 50 + '\n'
     MAIL_SERVER = 'smtp.mail.ru'
     MAIL_PORT = 465
     MAIL_USERNAME = 'test-70@internet.ru'
     MAIL_PASSWORD = '6sBPYzGrhLRZmVy1xnJi'
     FROM = MAIL_USERNAME
-    TO = 'kotvickiy@inbox.ru', 'vladkotvickiy@mail.ru'
+    TO = 'kotvickiy@inbox.ru', 'vladkotvickiy@mail.ru', 'vladkotvickiy@gmail.com'
     msg = MIMEText('\n {}'.format(msg).encode('utf-8'), _charset='utf-8')
     smtpObj = smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT)
     smtpObj.ehlo()
