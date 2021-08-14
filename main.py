@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
+________________________________
 pip install -r requirements.txt
 telegram: https://t.me/kotvickiy
+________________________________
 """
 import requests
 from bs4 import BeautifulSoup as bs
