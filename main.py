@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 pip install -r requirements.txt
+telegram: https://t.me/kotvickiy
 """
 import requests
 from bs4 import BeautifulSoup as bs
@@ -33,7 +34,7 @@ def get_html(url):
             return response.text
         else:
             sec = uniform(50, 60)
-            print('Ошибка сайта:', str(response.status_code) + ',', 'переподключение', str(int(sec)), 'секунд..', 'попытка', str(cnt))
+            print('Site error:', str(response.status_code) + ',', 'reconnecting', str(int(sec)), 'seconds..', 'attempt', str(cnt))
             if cnt > 5:
                 break
             cnt += 1
@@ -64,7 +65,7 @@ def verify_news(url):
         save(new_lst)
         send_email(freshs_lst)
     else:
-        send_email(['Нет добавленного контента'])
+        send_email(['No added content'])
 
 
 def run(url):
