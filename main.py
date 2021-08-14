@@ -5,10 +5,9 @@ pip install -r requirements.txt
 import requests
 from bs4 import BeautifulSoup as bs
 import os
-import smtplib
-from email.mime.text import MIMEText
 from random import uniform
 from time import sleep
+from send_mail import send_email
 
 
 def save(data):
@@ -53,27 +52,6 @@ def get_data(html):
     return all_lst
 
 
-def send_email(lst):
-    msg = u'Subject:' + "\n\n"
-    for i in lst:
-        msg += '    ' + str(i).strip() + "\n"
-    msg += '_' * 50 + '\n'
-    MAIL_SERVER = 'smtp.mail.ru'
-    MAIL_PORT = 465
-    MAIL_USERNAME = 'test-70@internet.ru'
-    MAIL_PASSWORD = '6sBPYzGrhLRZmVy1xnJi'
-    FROM = MAIL_USERNAME
-    # TO = 'm@wmob.eu', 'zlokovar@gmail.com', 'vladkotvickiy@gmail.com'
-    TO = 'kotvickiy@inbox.ru', 'vladkotvickiy@gmail.com'
-    msg = MIMEText('\n {}'.format(msg).encode('utf-8'), _charset='utf-8')
-    smtpObj = smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT)
-    smtpObj.ehlo()
-    smtpObj.login(MAIL_USERNAME, MAIL_PASSWORD)
-    smtpObj.sendmail(FROM, TO,
-            'Subject: _site_ \n{}'.format(msg))
-    smtpObj.quit()
-
-
 def verify_news(url):
     ref_lst = lst_old()
     new_lst = get_data(get_html(url))
@@ -86,7 +64,7 @@ def verify_news(url):
         save(new_lst)
         send_email(freshs_lst)
     else:
-        send_email(['Добавленного контента нет'])
+        send_email(['Нет добавленного контента'])
 
 
 def run(url):
