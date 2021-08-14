@@ -36,9 +36,9 @@ def get_html(url):
         else:
             sec = uniform(50, 60)
             now = datetime.datetime.now()
-            print(str(now.strftime('%d-%m-%Y %H:%M:%S')) + ' Site error:', str(response.status_code) + ',', 'reconnecting', str(int(sec)), 'seconds..', 'attempt', str(cnt))
             if cnt > 5:
                 break
+            print(str(now.strftime('%d-%m-%Y %H:%M:%S')) + ' Site error:', str(response.status_code) + ',', 'reconnecting', str(int(sec)), 'seconds..', 'attempt', str(cnt))
             cnt += 1
             sleep(sec)
 
