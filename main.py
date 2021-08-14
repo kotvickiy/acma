@@ -82,7 +82,7 @@ def run(url):
 
 
 def main():
-    url = r'https://www.acma.gov.au/blocked-gambling-websites'  
+    url = r'https://www.acma.gov.au/blocked-gambling-websites'
     run(url)
 
 
