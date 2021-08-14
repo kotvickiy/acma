@@ -77,7 +77,8 @@ def run(url):
         else:
             save(get_data(get_html(url)))
     except Exception as ex:
-        print(ex)
+        now = datetime.datetime.now()
+        print(str(now.strftime('%d-%m-%Y %H:%M:%S')) + str(ex))
 
 
 def main():
