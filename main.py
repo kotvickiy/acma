@@ -24,14 +24,21 @@ def lst_old():
 
 
 def get_html(url):
-    headers = {
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36',
-                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'}
-    response = requests.get(url, headers=headers)
-    if response.ok:
-        return response.text
-    else:
-        return response.status_code
+    cnt = 1
+    while True:
+        headers = {
+                    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36',
+                    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'}
+        response = requests.get(url, headers=headers)
+        if response.ok:
+            return response.text
+        else:
+            sec = uniform(50, 60)
+            print('Ошибка сайта:', str(response.status_code) + ',', 'переподключение', str(int(sec)), 'секунд..', 'попытка', str(cnt))
+            if cnt > 5:
+                break
+            cnt += 1
+            sleep(sec)
 
 
 def get_data(html):
@@ -56,7 +63,8 @@ def send_email(lst):
     MAIL_USERNAME = 'test-70@internet.ru'
     MAIL_PASSWORD = '6sBPYzGrhLRZmVy1xnJi'
     FROM = MAIL_USERNAME
-    TO = 'm@wmob.eu', 'zlokovar@gmail.com', 'vladkotvickiy@gmail.com'
+    # TO = 'm@wmob.eu', 'zlokovar@gmail.com', 'vladkotvickiy@gmail.com'
+    TO = 'kotvickiy@inbox.ru', 'vladkotvickiy@gmail.com'
     msg = MIMEText('\n {}'.format(msg).encode('utf-8'), _charset='utf-8')
     smtpObj = smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT)
     smtpObj.ehlo()
@@ -77,6 +85,8 @@ def verify_news(url):
     if freshs_lst:
         save(new_lst)
         send_email(freshs_lst)
+    else:
+        send_email(['Добавленного контента нет'])
 
 
 def run(url):
