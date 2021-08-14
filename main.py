@@ -11,9 +11,9 @@ from send_mail import send_email
 
 
 def save(data):
-    with open('./lst_sites.txt', 'w'):
+    with open('/home/vlad405/public/acma/lst_sites.txt', 'w'):
         for i in data:
-            with open('./lst_sites.txt', 'a', encoding='utf-8', newline='') as file:
+            with open('/home/vlad405/public/acma/lst_sites.txt', 'a', encoding='utf-8', newline='') as file:
                 file.write('{}\n'.format(i))
 
 
