@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup as bs
 import os
 from random import uniform
 from time import sleep
+import datetime
 from send_mail import send_email
 
 
@@ -34,7 +35,8 @@ def get_html(url):
             return response.text
         else:
             sec = uniform(50, 60)
-            print('Site error:', str(response.status_code) + ',', 'reconnecting', str(int(sec)), 'seconds..', 'attempt', str(cnt))
+            now = datetime.datetime.now()
+            print(str(now.strftime('%d-%m-%Y %H:%M:%S')) + ' Site error:', str(response.status_code) + ',', 'reconnecting', str(int(sec)), 'seconds..', 'attempt', str(cnt))
             if cnt > 5:
                 break
             cnt += 1
