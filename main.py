@@ -11,7 +11,7 @@ import os
 from random import uniform
 from time import sleep
 import datetime
-from send_mail import send_email
+from send_mail import send_mail
 
 
 def save(data):
@@ -67,9 +67,9 @@ def verify_news(url):
             freshs_lst.append(new)
     if freshs_lst:
         save(new_lst)
-        send_email(freshs_lst)
+        send_mail(freshs_lst)
     else:
-        send_email(['No added content'])
+        send_mail(['No added content'])
 
 
 def run(url):
@@ -80,7 +80,7 @@ def run(url):
             save(get_data(get_html(url)))
     except Exception as ex:
         now = datetime.datetime.now()
-        print(str(now.strftime('%d-%m-%Y %H:%M:%S')) + str(ex))
+        print(str(now.strftime('%d-%m-%Y %H:%M:%S ')) + str(ex))
 
 
 def main():
