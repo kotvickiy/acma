@@ -4,10 +4,10 @@ from email.mime.text import MIMEText
 
 def send_mail(list_text):
     server = 'smtp.mail.ru'
-    user = 'test-70@internet.ru'
-    password = '6sBPYzGrhLRZmVy1xnJi'
+    user = 'CheckAustralia@mail.ru'
+    password = 'uyOWGV6btZ3RgDL3sawv'
 
-    sender = 'test-70@internet.ru'
+    sender = 'CheckAustralia@mail.ru'
     recipients = ['kotvickiy@inbox.ru']
     subject = 'Австралия заблокировала ещё одно казино'
     text = ''
@@ -27,3 +27,5 @@ def send_mail(list_text):
     mail.login(user, password)
     mail.sendmail(sender, recipients, msg.as_string())
     mail.quit()
+
+send_mail(['test', 'еще тест'])
