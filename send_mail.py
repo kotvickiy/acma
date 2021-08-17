@@ -27,5 +27,3 @@ def send_mail(list_text):
     mail.login(user, password)
     mail.sendmail(sender, recipients, msg.as_string())
     mail.quit()
-
-send_mail(['test', 'еще тест'])
