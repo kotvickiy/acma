@@ -69,7 +69,7 @@ def verify_news(url):
         save(new_lst)
         send_mail(freshs_lst)
     else:
-        send_mail(['No added content'])
+        send_mail(['Нет добавленного контента'])
 
 
 def run(url):

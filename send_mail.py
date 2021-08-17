@@ -9,7 +9,7 @@ def send_mail(list_text):
 
     sender = 'CheckAustralia@mail.ru'
     recipients = ['kotvickiy@inbox.ru']
-    subject = 'Австралия заблокировала ещё одно казино'
+    subject = 'Тест. Австралия заблокировала ещё одно казино'
     text = ''
     for i in list_text:
         text += str(i).replace('.', ',').strip() + "\n"
