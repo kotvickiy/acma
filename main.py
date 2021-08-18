@@ -71,7 +71,6 @@ def verify_news(url):
     else:
         send_mail(['Нет добавленного контента'])
 
-
 def run(url):
     try:
         if os.path.exists('./lst_sites.txt'):
