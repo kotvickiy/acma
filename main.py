@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup as bs
 import os
 from random import uniform
 from time import sleep
-import datetime
+from datetime import datetime
 from send_mail import send_mail
 
 
@@ -39,7 +39,7 @@ def get_html(url):
             if cnt > 5:
                 break
             sec = uniform(50, 60)
-            now = datetime.datetime.now()
+            now = datetime.now()
             print(str(now.strftime('%d-%m-%Y %H:%M:%S')) + ' Site error:', str(response.status_code) + ',', 'reconnecting', str(int(sec)), 'seconds..', 'attempt', str(cnt))
             cnt += 1
             sleep(sec)
@@ -68,8 +68,8 @@ def verify_news(url):
     if freshs_lst:
         save(new_lst)
         send_mail(freshs_lst, 'Австралия заблокировала ещё одно казино')
-    elif datetime.datetime.today().weekday() == 3 and int(datetime.datetime.now().strftime('%H')) == 8:
-        send_mail(['Нет добавленного контента'])
+    elif datetime.today().weekday() == 3 and int(datetime.now().strftime('%H')) == 9:
+        send_mail(['Новых казино в списке нет'], 'Новых казино в списке нет')
 
 def run(url):
     try:
@@ -78,7 +78,7 @@ def run(url):
         else:
             save(get_data(get_html(url)))
     except Exception as ex:
-        now = datetime.datetime.now()
+        now = datetime.now()
         print(str(now.strftime('%d-%m-%Y %H:%M:%S ')) + str(ex))
 
 
