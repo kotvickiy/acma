@@ -2,14 +2,14 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def send_mail(list_text):
+def send_mail(list_text, subject=''):
     server = 'smtp.mail.ru'
     user = 'CheckAustralia@mail.ru'
     password = 'uyOWGV6btZ3RgDL3sawv'
 
     sender = 'CheckAustralia@mail.ru'
     recipients = ['kotvickiy@inbox.ru']  # 'm@wmob.eu', 'zlokovar@gmail.com'
-    subject = 'Тест. Австралия заблокировала ещё одно казино'
+    
     text = ''
     for i in list_text:
         text += str(i).replace('.', ',').strip() + "\n"

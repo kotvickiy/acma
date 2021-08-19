@@ -67,8 +67,8 @@ def verify_news(url):
             freshs_lst.append(new)
     if freshs_lst:
         save(new_lst)
-        send_mail(freshs_lst)
-    else:
+        send_mail(freshs_lst, 'Австралия заблокировала ещё одно казино')
+    elif datetime.datetime.today().weekday() == 4 and int(datetime.datetime.now().strftime('%H')) == 15:
         send_mail(['Нет добавленного контента'])
 
 def run(url):
