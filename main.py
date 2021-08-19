@@ -15,7 +15,7 @@ from send_mail import send_mail
 
 
 def save(data):
-    with open('./lst_sites.txt', 'w'):
+    with open('./lst_sites.txt', 'w'):  # создаем очищаем
         for i in data:
             with open('./lst_sites.txt', 'a', encoding='utf-8', newline='') as file:
                 file.write('{}\n'.format(i))
