@@ -15,14 +15,14 @@ from send_mail import send_mail
 
 
 def save(data):
-    with open('./lst_sites.txt', 'w'):
+    with open('./sites.txt', 'w'):
         for i in data:
-            with open('./lst_sites.txt', 'a', encoding='utf-8', newline='') as file:
+            with open('./sites.txt', 'a', encoding='utf-8', newline='') as file:
                 file.write('{}\n'.format(i))
 
 
 def lst_old():
-    with open('./lst_sites.txt', encoding='utf-8') as file:
+    with open('./sites.txt', encoding='utf-8') as file:
         return [i.strip() for i in file.readlines()]
 
 
@@ -57,25 +57,40 @@ def get_data(html):
     return all_lst
 
 
-def verify_news(url):
-    ref_lst = lst_old()
-    new_lst = get_data(get_html(url))
+def save_last_time(data):
+    with open('./time_last.txt', 'w') as file:
+            file.write(f'{data}')
 
-    freshs_lst = []
-    for new in new_lst:
-        if new not in ref_lst:
-            freshs_lst.append(new)
-    if freshs_lst:
-        save(new_lst)
-        send_mail(freshs_lst, 'Австралия заблокировала ещё одно казино')
-    elif datetime.today().weekday() == 3 and int(datetime.now().strftime('%H')) == 9:
-        send_mail(['Новых казино в списке нет'], 'Новых казино в списке нет')
+
+def last_time():
+    with open('./time_last.txt') as file:
+        reader = file.readline()
+        return datetime.strptime(reader, '%Y-%m-%d %H:%M:%S.%f')
+
+def verify_news(url):
+    if not os.path.exists('./time_last.txt'):
+        save_last_time(datetime.now())
+    else:
+        ref_lst = lst_old()
+        new_lst = get_data(get_html(url))
+
+        freshs_lst = []
+        for new in new_lst:
+            if new not in ref_lst:
+                freshs_lst.append(new)
+        if freshs_lst:
+            save(new_lst)
+            send_mail(freshs_lst, 'Австралия заблокировала ещё одно казино')
+            save_last_time(datetime.now())
+        elif datetime.today().weekday() == 4 and int(datetime.now().strftime('%H')) == 15 and (datetime.now() - last_time()).days > 7:
+            send_mail(['Новых казино в списке нет'], 'Скрипт по Австралии работает')
 
 def run(url):
     try:
-        if os.path.exists('./lst_sites.txt'):
+        if os.path.exists('./sites.txt'):
             verify_news(url)
         else:
+            save_last_time(datetime.now())
             save(get_data(get_html(url)))
     except Exception as ex:
         now = datetime.now()

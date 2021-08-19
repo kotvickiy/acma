@@ -2,4 +2,5 @@
 /pc_venv/
 /m_venv/
 /errors.log
-/lst_sites.txt
+/time_last.txt
+/sites.txt
