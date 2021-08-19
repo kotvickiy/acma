@@ -1,4 +1,5 @@
-__pycache__/
-pc_venv/
-m_venv/
-errors.log
+/__pycache__/
+/pc_venv/
+/m_venv/
+/errors.log
+/lst_sites.txt
