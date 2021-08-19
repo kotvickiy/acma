@@ -8,7 +8,7 @@ def send_mail(list_text, subject=''):  # subject это тема письма
     password = 'uyOWGV6btZ3RgDL3sawv'
 
     sender = 'CheckAustralia@mail.ru'
-    recipients = ['kotvickiy@inbox.ru']  # 'm@wmob.eu', 'zlokovar@gmail.com'
+    recipients = ['kotvickiy@inbox.ru', 'vladkotvickiy@gmail.com']  # 'm@wmob.eu', 'zlokovar@gmail.com'
     
     text = ''
     for i in list_text:

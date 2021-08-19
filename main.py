@@ -15,7 +15,7 @@ from send_mail import send_mail
 
 
 def save(data):
-    with open('./lst_sites.txt', 'w'):  # создаем очищаем
+    with open('./lst_sites.txt', 'w'):
         for i in data:
             with open('./lst_sites.txt', 'a', encoding='utf-8', newline='') as file:
                 file.write('{}\n'.format(i))
@@ -68,7 +68,7 @@ def verify_news(url):
     if freshs_lst:
         save(new_lst)
         send_mail(freshs_lst, 'Австралия заблокировала ещё одно казино')
-    elif datetime.datetime.today().weekday() == 3 and int(datetime.datetime.now().strftime('%H')) == 4:  # проверяем дату и время для cron
+    elif datetime.datetime.today().weekday() == 3 and int(datetime.datetime.now().strftime('%H')) == 8:
         send_mail(['Нет добавленного контента'])
 
 def run(url):
