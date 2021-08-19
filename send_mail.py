@@ -2,7 +2,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def send_mail(list_text, subject=''):
+def send_mail(list_text, subject=''):  # subject это тема письма
     server = 'smtp.mail.ru'
     user = 'CheckAustralia@mail.ru'
     password = 'uyOWGV6btZ3RgDL3sawv'
