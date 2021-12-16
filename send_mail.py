@@ -4,11 +4,12 @@ from email.mime.text import MIMEText
 
 def send_mail(list_text, subject=''):  # subject это тема письма
     server = 'smtp.mail.ru'
-    user = 'CheckAustralia@mail.ru'
-    password = 'uyOWGV6btZ3RgDL3sawv'
+    user = 'mikhail.bykov86@mail.ru'
+    password = 'jkGHv96789JKGH.m'
 
-    sender = 'CheckAustralia@mail.ru'
-    recipients = ['m@wmob.eu', 'zlokovar@gmail.com', 'kotvickiy@inbox.ru']
+    sender = 'mikhail.bykov86@mail.ru'
+    # recipients = ['m@wmob.eu', 'zlokovar@gmail.com', 'kotvickiy@inbox.ru']
+    recipients = ['kotvickiy@inbox.ru']
     
     text = ''
     for i in list_text:
