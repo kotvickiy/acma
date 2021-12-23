@@ -52,7 +52,8 @@ def get_data(html):
     for item in items:
         lst = item.text.strip().split('\n')
         for i in lst:
-            all_lst.append(i)
+            if i != ' ':
+                all_lst.append(i)
     
     return all_lst
 
