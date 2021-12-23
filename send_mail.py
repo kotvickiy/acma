@@ -8,8 +8,8 @@ def send_mail(list_text, subject=''):  # subject это тема письма
     password = 'jkGHv96789JKGH.m'
 
     sender = 'mikhail.bykov86@mail.ru'
-    # recipients = ['m@wmob.eu', 'zlokovar@gmail.com', 'kotvickiy@inbox.ru']
-    recipients = ['kotvickiy@inbox.ru']
+    recipients = ['m@wmob.eu', 'zlokovar@gmail.com', 'kotvickiy@inbox.ru']
+    # recipients = ['kotvickiy@inbox.ru']
     
     text = ''
     for i in list_text:
