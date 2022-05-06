@@ -27,15 +27,13 @@ def lst_old():
         return [i.strip() for i in file.readlines()]
 
 
-def get_html(url):
-    
+def get_html(url):    
     headers = {
                 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36',
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'}
     response = requests.get(url, headers=headers)
     if response.ok:
         return response.text
-            
 
 
 def get_data(html):
@@ -47,7 +45,6 @@ def get_data(html):
         for i in lst:
             if i != ' ':
                 all_lst.append(i)
-    
     return all_lst
 
 
@@ -60,6 +57,7 @@ def last_time():
     with open('./time_last.txt') as file:
         reader = file.readline()
         return datetime.strptime(reader, '%Y-%m-%d %H:%M:%S.%f')
+
 
 def verify_news(url):
     if not os.path.exists('./time_last.txt'):
@@ -79,6 +77,7 @@ def verify_news(url):
         elif datetime.today().weekday() == 4 and int(datetime.now().strftime('%H')) == 15 and (datetime.now() - last_time()).days > 7:
             send_mail(['Новых казино в списке нет'], 'Скрипт по Австралии работает')
 
+
 def run(url):
     if os.path.exists('./sites.txt'):
         verify_news(url)
@@ -93,9 +92,9 @@ def main():
             url = r'https://www.acma.gov.au/blocked-gambling-websites'
             run(url)
             break
-        except Exception as ex:
+        except requests.exceptions.ConnectionError:
             sec = uniform(10, 20)
-            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, {ex}, reconnect: {sec} sec..")
+            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, requests.exceptions.ConnectionError, reconnect: {sec} sec..")
             sleep(sec)
 
 
