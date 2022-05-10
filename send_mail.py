@@ -1,3 +1,4 @@
+from datetime import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -36,5 +37,8 @@ def send_mail(list_text, subject=''):  # subject это тема письма
         mail.quit()
         
     except socket.gaierror:
-        print('socket.gaierror')
-        send_mail(list_text, subject='')
+        print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, send_mail: socket.gaierror")
+        send_mail(list_text, subject=subject)
+    except Exception as ex:
+        print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, send_mail: {ex}")
+        send_mail(list_text, subject=subject)

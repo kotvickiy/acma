@@ -29,8 +29,23 @@ def lst_old():
 
 def get_html(url):    
     headers = {
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36',
-                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'}
+        'authority': 'www.acma.gov.au',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'accept-language': 'ru-RU,ru;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6',
+        'cache-control': 'no-cache',
+        'cookie': 'ak_bmsc=283CB0108107B534766E908AC6C613D5~000000000000000000000000000000~YAAQBDIQYGZIaIuAAQAAyC/6rQ9yFG7zlvyX5JPhJKpjvLL28TXM3xZVDST9dAscf+I34CXWWH2/30QMhBHWZ0CJ5+nVncWV8KW4/1WyBPPQfUUBYYpelpjI0gRizrawcdgqpzyoTSGbVt5TugBMYbe2h+bxpBPeIMWUolO8uwt71dO6S0xhB/ieDky3/7RaxBioEsaMskMS0KckKL1yD4otNQgwkpQphQ5n+FYjxv8hOykkD83vbFltmTSAifibijbvK/I2SZ9Lh4L8HSkXo3R5+oA9Rl4axMzayJFCIioepWobpYJnSJd2CTJqCfa1lq+bXvPMJytXDU4v90H9T8sHCO7/bF1a+HdtXIFlMMsYwPIMiTbhi61wiDCQlxdfSGErSEBohRpu; monsido=4091652186295277; bm_mi=B37A963BF388CE01C13BB82A0F6EDFC3~YAAQBDIQYFdKaIuAAQAALjoqrg+GHZLEO5L5hwut/1U9LeI0IrqaoNZe+n8WPBYL+KK7dAYKDCSMQG2MtLx8httceSBoIIkHHfcb6f7iGoMCV7yuXfuwc2TUXoAWKOhFJ6CxcanjIv6ZOBnqRsLMQ+jG6sB5+6WlQqg3d8ohFWJ1edk247RNucu+/cDfDgUoIzhCvEwNpbcxub07uxncQEOeiAl4LSni4n03Oi7SkQ7B/7EIcLxa2lGqU1vQJOth7llRUk2yZE1xvyB55xXaYLn7XItdBljBFZS4uF0xg2x8RNzvpO7PhFc5yd2/C1ZK3xra4Cenj8lbKVjIbIpwl1HaL/66Jp8O~1; bm_sv=8D73C7485E44951C88AAF47E4C8B7872~YAAQBDIQYFhKaIuAAQAALjoqrg8TXPmrIsaMHlVftHDqobzCJkFJmIDgkK6eK8+1xSOaG/vfX6FRsctwsMsJMCZNSUYn+AoU9Snn+H0HdakElaTls4lX+1ZEXjxpLdvWOjau8LVFEq13mlmG6A0N/dIJ2ZvyFzADogXVLm7UUR4c487FgK51TBaEEqy/62SZct7EV4RpNyVJNNzwy6TOnE603SwXSPkphnnSwisVs9uGvd4d+n2bbMOjBfPuoBWZRg==~1',
+        'pragma': 'no-cache',
+        'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="101", "Google Chrome";v="101"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'document',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
+    }
+    
     response = requests.get(url, headers=headers)
     if response.ok:
         return response.text
@@ -87,7 +102,7 @@ def run(url):
 
 
 def main():
-    for i in range(5):
+    for i in range(10):
         try:
             url = r'https://www.acma.gov.au/blocked-gambling-websites'
             run(url)
@@ -95,6 +110,10 @@ def main():
         except requests.exceptions.ConnectionError:
             sec = uniform(10, 20)
             print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, requests.exceptions.ConnectionError, reconnect: {sec} sec..")
+            sleep(sec)
+        except Exception as ex:
+            sec = uniform(10, 20)
+            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, {ex}, reconnect: {sec} sec..")
             sleep(sec)
 
 
