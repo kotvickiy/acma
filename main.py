@@ -6,6 +6,7 @@ telegram: https://t.me/kotvickiy
 ________________________________
 """
 import requests
+from requests.exceptions import ConnectionError
 from bs4 import BeautifulSoup as bs
 import os
 from random import uniform
@@ -107,9 +108,9 @@ def main():
             url = r'https://www.acma.gov.au/blocked-gambling-websites'
             run(url)
             break
-        except requests.exceptions.ConnectionError:
+        except ConnectionError:
             sec = uniform(10, 20)
-            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, requests.exceptions.ConnectionError, reconnect: {sec} sec..")
+            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, ConnectionError, reconnect: {sec} sec..")
             sleep(sec)
         except Exception as ex:
             sec = uniform(10, 20)
