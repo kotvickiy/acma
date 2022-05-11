@@ -103,7 +103,7 @@ def run(url):
 
 
 def main():
-    for i in range(10):
+    for i in range(25):
         try:
             url = r'https://www.acma.gov.au/blocked-gambling-websites'
             run(url)
