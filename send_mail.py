@@ -6,8 +6,7 @@ import socket
 
 def send_mail(list_text, subject=''):  # subject это тема письма
     try:
-        # server = 'smtp.mail.ru'
-        server = 'smtp.rambler.ru'
+        server = 'smtp.mail.ru'
 
         # user = 'mikhail.bykov86@mail.ru'
         # password = 'jkGHv96789JKGH.m'
@@ -19,9 +18,9 @@ def send_mail(list_text, subject=''):  # subject это тема письма
         # sender = 'kotvickiy@inbox.ru'
         # recipients = ['kotvickiy@inbox.ru']
         
-        user = 'test_acma@rambler.ru'
-        password = 'ZX-spectrum1982'
-        sender = 'test_acma@rambler.ru'
+        user = 'smtplib@inbox.ru'
+        password = '9p89Awum9XPNZNcg3BeH'
+        sender = 'smtplib@inbox.ru'
         recipients = ['kotvickiy@inbox.ru']
         
         text = ''

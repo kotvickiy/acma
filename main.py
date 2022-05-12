@@ -88,7 +88,7 @@ def verify_news(url):
                 freshs_lst.append(new)
         if freshs_lst:
             save(new_lst)
-            send_mail(freshs_lst, 'Австралия заблокировала ещё одно казино')
+            send_mail(freshs_lst, 'Австралия заблокировала ещё казино:')
             save_last_time(datetime.now())
         elif datetime.today().weekday() == 4 and int(datetime.now().strftime('%H')) == 15 and (datetime.now() - last_time()).days > 7:
             send_mail(['Новых казино в списке нет'], 'Скрипт по Австралии работает')
@@ -114,7 +114,7 @@ def main():
             sleep(sec)
         except Exception as ex:
             sec = uniform(10, 20)
-            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, {ex}, reconnect: {sec} sec..")
+            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, main: {ex}, reconnect: {sec} sec..")
             sleep(sec)
 
 
