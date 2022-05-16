@@ -88,10 +88,12 @@ def verify_news(url):
                 freshs_lst.append(new)
         if freshs_lst:
             save(new_lst)
-            send_mail(freshs_lst, 'Австралия заблокировала ещё казино:')
+            send_mail(freshs_lst, 'Австралия заблокировала ещё казино:', ['m@wmob.eu', 'zlokovar@gmail.com', 'kotvickiy@inbox.ru'])
             save_last_time(datetime.now())
         elif datetime.today().weekday() == 4 and int(datetime.now().strftime('%H')) == 15 and (datetime.now() - last_time()).days > 7:
-            send_mail(['Новых казино в списке нет'], 'Скрипт по Австралии работает')
+            send_mail(['Новых казино в списке нет'], 'Скрипт по Австралии работает', ['m@wmob.eu', 'zlokovar@gmail.com', 'kotvickiy@inbox.ru'])
+        else:
+            print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, test --> [ok]")
 
 
 def run(url):

@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import socket
 
-def send_mail(list_text, subject=''):  # subject это тема письма
+def send_mail(lst_text, subject='', lst_recipients = ['kotvickiy@inbox.ru']):  # subject это тема письма
     try:
         server = 'smtp.mail.ru'
 
@@ -21,10 +21,10 @@ def send_mail(list_text, subject=''):  # subject это тема письма
         user = 'smtplib@inbox.ru'
         password = '9p89Awum9XPNZNcg3BeH'
         sender = 'smtplib@inbox.ru'
-        recipients = ['kotvickiy@inbox.ru']
+        recipients = lst_recipients
         
         text = ''
-        for i in list_text:
+        for i in lst_text:
             text += str(i).replace('.', ',').strip() + "\n"
 
 
@@ -43,7 +43,7 @@ def send_mail(list_text, subject=''):  # subject это тема письма
         
     except socket.gaierror:
         print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, send_mail: socket.gaierror")
-        send_mail(list_text, subject=subject)
+        send_mail(lst_text, subject=subject)
     except Exception as ex:
         print(f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')}, send_mail: {ex}")
-        send_mail(list_text, subject=subject)
+        send_mail(lst_text, subject=subject)
